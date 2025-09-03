@@ -125,7 +125,7 @@ const UserFormPost = () => {
   return (
     <DrawerStack
       id={id}
-      title="Connexion"
+      title="Travailleur"
       isLoading={form.state.isSubmitting}
       footerSection={
         <Group

@@ -85,7 +85,7 @@ export const CustomerWorkshopForm = ({ }: CustomerWorkshopFormProps) => {
   return (
     <DrawerStack
       id={id}
-      title="Connexion"
+      title={initialData ? "Modifier un client" : "Ajouter un client"}
       isLoading={form.state.isSubmitting}
       footerSection={
         <Group

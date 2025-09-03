@@ -11,7 +11,7 @@ import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 import { ROUTES } from "@shared/constants";
 import { Suspense } from "react";
 import { AmountOrderWorkshopForm, DeliveryOrderWorkshopForm, FittingForm, MeasurementOrderWorkshopForm, OrderWorshoForm, WorkerOrderWorkshopForm, WorkshopCreateForm } from "@features/workshop/components/form";
-import { LoginForm, UserForm } from "@features/users/components/form";
+import { CustomerWorkshopForm, LoginForm, UserForm } from "@features/users/components/form";
 import { CustomerPage, DashboardPage, DiaryPage, HomePage, WorkerPage, WorkshopSettingPage } from "./pages";
 import { Dashboard } from "@shared/components";
 
@@ -57,6 +57,7 @@ export default function App() {
                                         }
                                         <LoginForm />
                                         <UserForm />
+                                        <CustomerWorkshopForm/>
                                         <AmountOrderWorkshopForm />
                                         <DeliveryOrderWorkshopForm />
                                         <FittingForm />
