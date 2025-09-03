@@ -82,7 +82,7 @@ export const ListItemNotification = ({
       if (test) {
         return true
       }
-      const response = await proxy.api.apiNotificationInternalPartialUpdate(notificationId, { is_read: true })
+      const response = await proxy.api.notificationInternalPartialUpdate(notificationId, { is_read: true })
       return response.data
     },
     onSuccess: () => setVisible(false)

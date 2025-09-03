@@ -46,7 +46,7 @@ export const ListNotification = ({ test }: ListNotificationProps) => {
       }
 
 
-      const response = await proxy.api.apiNotificationInternalList({ page: pageParam });
+      const response = await proxy.api.notificationInternalList({ page: pageParam });
       return response.data
     },
     initialPageParam: 1,

@@ -107,7 +107,7 @@ export const WorkerPage = ({ }: WorkerPageProps) => {
     retry: !!workshop,
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopUsersWorkersList({
+        const response = await proxy.api.workshopUsersWorkersList({
           slug: workshop.slug,
           page: pageParam,
         }, { secure: true })

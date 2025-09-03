@@ -47,7 +47,7 @@ const GeneralInfoTab = () => {
     onSubmit: async ({ value }) => {
       try {
         const response = await responseTraited({
-          queryFn: () => proxy.api.apiWorkshopPartialUpdate(workshop?.slug || "", value, { type: ContentType.Json, secure: true })
+          queryFn: () => proxy.api.workshopPartialUpdate(workshop?.slug || "", value, { type: ContentType.Json, secure: true })
         })
         refetchUser()
         const data = responseExtractData(response)
@@ -75,7 +75,7 @@ const GeneralInfoTab = () => {
             isError
             validators={{
               onBlurAsync: async (state) => {
-                const response = await proxy.api.apiWorkshopValidatorsNamesUniqueCreate({ verify: state.value, exclude: workshop?.name })
+                const response = await proxy.api.workshopValidatorsNamesUniqueCreate({ verify: state.value, exclude: workshop?.name })
                 return response.data.exists ? { message: "Cet nom est deja pris" } : undefined
               }
             }}
@@ -147,7 +147,7 @@ const PackagesTab = () => {
     retry: !!workshop,
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopPackageHistoryList(
+        const response = await proxy.api.workshopPackageHistoryList(
           {
             slug: workshop.slug,
             page: pageParam
@@ -239,7 +239,7 @@ const PermissionsTab = () => {
     retry: !!workshop,
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopUsersWorkersList({
+        const response = await proxy.api.workshopUsersWorkersList({
           slug: workshop.slug,
           page: pageParam,
         }, { secure: true })
@@ -258,7 +258,7 @@ const PermissionsTab = () => {
   const settingPatch = useMutation({
     mutationFn: async (data: PatchedSettingWriteRequest) => {
       const response = await responseTraited({
-        queryFn: () => proxy.api.apiWorkshopSettingPartialUpdate(workshop?.slug || "", data, { secure: true })
+        queryFn: () => proxy.api.workshopSettingPartialUpdate(workshop?.slug || "", data, { secure: true })
       })
       return responseExtractData(response)
     },

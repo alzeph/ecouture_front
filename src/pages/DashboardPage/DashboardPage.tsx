@@ -57,7 +57,7 @@ export const DashboardPage = ({ }: DashboardPageProps) => {
     queryKey: ["statisticOrderWorkshop", workshop?.slug, dataPeriode.verbose],
     queryFn: async () => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopStatsOrdersRetrieve({
+        const response = await proxy.api.workshopStatsOrdersRetrieve({
           slug: workshop.slug,
           created_after: dataPeriode.drf.start,
           created_before: dataPeriode.drf.end,

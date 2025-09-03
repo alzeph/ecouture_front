@@ -36,7 +36,7 @@ export const HomePage = ({ }: HomePageProps) => {
     queryKey: [APP_NAME, 'packages'],
     queryFn: async ({ pageParam }) => {
       const response = await responseTraited(({
-        queryFn: () => proxy.api.apiWorkshopPackageListList({ page: pageParam })
+        queryFn: () => proxy.api.workshopPackageListList({ page: pageParam })
       }))
       return responseExtractData(response)
     },

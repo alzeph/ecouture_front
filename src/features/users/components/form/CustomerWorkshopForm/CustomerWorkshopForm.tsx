@@ -47,13 +47,13 @@ export const CustomerWorkshopForm = ({ }: CustomerWorkshopFormProps) => {
         if (workshop) {
           const { photo, ...customer } = value
           const response = initialData ? await responseTraited({
-            queryFn: () => proxy.api.apiWorkshopCustomersWorkshopsPartialUpdate(workshop.slug, initialData.id, customer as PatchedCustomerWorkshopWriteRequest, { type: ContentType.Json })
+            queryFn: () => proxy.api.workshopCustomersWorkshopsPartialUpdate(workshop.slug, initialData.id, customer as PatchedCustomerWorkshopWriteRequest, { type: ContentType.Json })
           }) : await responseTraited({
-            queryFn: () => proxy.api.apiWorkshopCustomersWorkshopsCreate(workshop.description, customer as CustomerWorkshopWriteRequest, { type: ContentType.Json })
+            queryFn: () => proxy.api.workshopCustomersWorkshopsCreate(workshop.description, customer as CustomerWorkshopWriteRequest, { type: ContentType.Json })
           })
 
           await responseTraited(({
-            queryFn: () => proxy.api.apiWorkshopCustomersWorkshopsPartialUpdate(workshop.slug, initialData.id, { photo }, { type: ContentType.FormData })
+            queryFn: () => proxy.api.workshopCustomersWorkshopsPartialUpdate(workshop.slug, initialData.id, { photo }, { type: ContentType.FormData })
           }))
 
           notifications.show({
@@ -152,7 +152,7 @@ export const CustomerWorkshopForm = ({ }: CustomerWorkshopFormProps) => {
             placeholder='numéro de téléphone'
             validators={{
               onBlurAsync: async ({ value }) => {
-                const response = await proxy.api.apiUserVerifyPhoneCreate({ verify: value })
+                const response = await proxy.api.userVerifyPhoneCreate({ verify: value })
                 const isExists = responseIsExists(response)
                 return isExists ? { message: "numero est deja utilisé" } : undefined
               }

@@ -82,7 +82,7 @@ export const WorkshopCreateForm = ({ }: WorkshopCreateFormProps) => {
       try {
         const { user, workshop: workshop } = value
         const { ...userTraited } = user
-        const response = await responseTraited({ queryFn: () => proxy.api.apiWorkshopCreate({ user: userTraited, workshop }, { type: ContentType.Json }) })
+        const response = await responseTraited({ queryFn: () => proxy.api.workshopCreate({ user: userTraited, workshop }, { type: ContentType.Json }) })
         const data = responseExtractData(response)
         notifications.show({
           title: "Bienvenue",
@@ -164,7 +164,7 @@ export const WorkshopCreateForm = ({ }: WorkshopCreateFormProps) => {
                 isError
                 validators={{
                   onBlurAsync: async (state) => {
-                    const response = await proxy.api.apiWorkshopValidatorsNamesUniqueCreate({ verify: state.value })
+                    const response = await proxy.api.workshopValidatorsNamesUniqueCreate({ verify: state.value })
                     return response.data.exists ? { message: "Cet nom est deja pris" } : undefined
                   }
                 }}

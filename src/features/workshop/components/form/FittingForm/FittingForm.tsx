@@ -36,8 +36,8 @@ export const FittingForm = ({ }: FittingFormProps) => {
     onSubmit: async ({ value }) => {
       try {
         const response = initialData?.fitting
-          ? await responseTraited({ queryFn: () => proxy.api.apiWorkshopOrdersFittingsPartialUpdate(String(initialData.fitting?.id), initialData?.order.worker.workshop.slug, value as any, { type: ContentType.Json }) })
-          : await responseTraited({ queryFn: () => proxy.api.apiWorkshopFittingsCreate(initialData?.order.worker.workshop.slug, value as any, { type: ContentType.Json }) })
+          ? await responseTraited({ queryFn: () => proxy.api.workshopOrdersFittingsPartialUpdate(String(initialData.fitting?.id), initialData?.order.worker.workshop.slug, value as any, { type: ContentType.Json }) })
+          : await responseTraited({ queryFn: () => proxy.api.workshopFittingsCreate(initialData?.order.worker.workshop.slug, value as any, { type: ContentType.Json }) })
         const data = responseExtractData(response)
 
         notifications.show({

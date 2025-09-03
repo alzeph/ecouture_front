@@ -51,7 +51,7 @@ const FittingCard = ({ fitting, order }: { fitting: FittingRead, order: OrderWor
   const deleteFitting = useMutation({
     mutationFn: async () => {
       const response = await responseTraited({
-        queryFn: () => proxy.api.apiWorkshopOrdersFittingsDestroy(String(fitting.id), order.worker.workshop.slug)
+        queryFn: () => proxy.api.workshopOrdersFittingsDestroy(String(fitting.id), order.worker.workshop.slug)
       });
       return responseExtractData(response);
     },
@@ -206,7 +206,7 @@ export const DiaryPage = ({ }: DiaryPageProps) => {
       }
 
       try {
-        const response = await proxy.api.apiWorkshopOrdersList({
+        const response = await proxy.api.workshopOrdersList({
           slug: workshop.slug,
           page: pageParam,
           customer: selectedCustomer.length > 0 ? selectedCustomer as any : undefined,
@@ -238,7 +238,7 @@ export const DiaryPage = ({ }: DiaryPageProps) => {
     queryKey: [APP_NAME, 'customer_workshop', workshop],
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopCustomersWorkshopsList({ slug: workshop.slug, page: pageParam })
+        const response = await proxy.api.workshopCustomersWorkshopsList({ slug: workshop.slug, page: pageParam })
         return response.data
       } else {
         return {
@@ -266,7 +266,7 @@ export const DiaryPage = ({ }: DiaryPageProps) => {
     queryKey: ['workers', workshop],
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopUsersWorkersList({ slug: workshop.slug, page: pageParam })
+        const response = await proxy.api.workshopUsersWorkersList({ slug: workshop.slug, page: pageParam })
         return response.data
       } else {
         return {

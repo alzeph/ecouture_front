@@ -39,7 +39,7 @@ export const ArticleHaberdasheryForm = ({ }: ArticleHaberdasheryFormProps) => {
     queryKey: [APP_NAME, 'customer_workshop', workshop],
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiHaberdasheryTypesList({ page: pageParam })
+        const response = await proxy.api.haberdasheryTypesList({ page: pageParam })
         return response.data
       } else {
         return {
@@ -70,8 +70,8 @@ export const ArticleHaberdasheryForm = ({ }: ArticleHaberdasheryFormProps) => {
     onSubmit: async ({ value }) => {
       try {
         const response = initialData
-          ? await responseTraited({ queryFn: () => proxy.api.apiHaberdasheryArticlesPartialUpdate(String(initialData.pk), value, { type: ContentType.Json }) })
-          : await responseTraited({ queryFn: () => proxy.api.apiHaberdasheryArticlesCreate(value, { type: ContentType.Json }) })
+          ? await responseTraited({ queryFn: () => proxy.api.haberdasheryArticlesPartialUpdate(String(initialData.pk), value, { type: ContentType.Json }) })
+          : await responseTraited({ queryFn: () => proxy.api.haberdasheryArticlesCreate(value, { type: ContentType.Json }) })
 
         const data = responseExtractData(response)
         notifications.show({
@@ -135,7 +135,7 @@ export const ArticleHaberdasheryForm = ({ }: ArticleHaberdasheryFormProps) => {
             isError
             validators={{
               onBlurAsync: async ({ value }) => {
-                const response = await proxy.api.apiHaberdasheryArticleNamesUniqueCreate(form.state.values.type_article, { verify: value }, { type: ContentType.Json, secure: true })
+                const response = await proxy.api.haberdasheryArticleNamesUniqueCreate(form.state.values.type_article, { verify: value }, { type: ContentType.Json, secure: true })
                 const isExists = responseIsExists(response)
                 return isExists ? { message: "le nom de l'article est dej utiliser" } : undefined
               }

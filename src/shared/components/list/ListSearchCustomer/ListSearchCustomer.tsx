@@ -62,7 +62,7 @@ export const ListSearchCustomer = ({ test }: ListSearchCustomerProps) => {
       }
 
       if (workshop) {
-        const response = await proxy.api.apiWorkshopCustomersWorkshopsList(
+        const response = await proxy.api.workshopCustomersWorkshopsList(
           {
             slug: workshop.slug,
             page: pageParam,

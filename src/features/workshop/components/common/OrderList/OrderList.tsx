@@ -33,8 +33,8 @@ export const OrderList = ({ }: OrderListProps) => {
     queryKey: [APP_NAME, 'orders_workshop', filteredOrders, workshop, valueOrderStatusSearch],
     queryFn: async () => {
       const response = filteredOrders.customer
-        ? await proxy.api.apiWorkshopOrdersList({ slug: workshop?.slug || "", customer: [filteredOrders.customer.id], status: valueOrderStatusSearch as any  }, { secure: true })
-        : await proxy.api.apiWorkshopOrdersList({ slug: workshop?.slug || "", worker: [filteredOrders.worker.id], status: valueOrderStatusSearch as any}, { secure: true })
+        ? await proxy.api.workshopOrdersList({ slug: workshop?.slug || "", customer: [filteredOrders.customer.id], status: valueOrderStatusSearch as any  }, { secure: true })
+        : await proxy.api.workshopOrdersList({ slug: workshop?.slug || "", worker: [filteredOrders.worker.id], status: valueOrderStatusSearch as any}, { secure: true })
       return response.data
     },
     staleTime: 1000 * 60 * 5,

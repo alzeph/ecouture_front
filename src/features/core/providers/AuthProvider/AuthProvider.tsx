@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const loginMutation = useMutation({
     mutationFn: async ({ email, password }: TokenObtainPairRequest) => {
-      const response = await proxy.api.apiAuthTokenCreate({ email, password });
+      const response = await proxy.api.authTokenCreate({ email, password });
       return response
     },
     onSuccess: async (response) => {
@@ -138,7 +138,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const refreshTokenMutation = useMutation({
     mutationFn: async (_refresh: TokenRefreshRequest) => {
-      const response = await proxy.api.apiAuthTokenRefreshCreate(_refresh);
+      const response = await proxy.api.authTokenRefreshCreate(_refresh);
       return response
     },
     onSuccess: async (response) => {
@@ -162,7 +162,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     queryKey: [APP_NAME, "user"],
     queryFn: async () => {
       secureProxy()
-      const response = await proxy.api.apiUserInfoDetailRetrieve({});
+      const response = await proxy.api.userInfoDetailRetrieve({});
       return response.data
     },
     refetchOnWindowFocus: false,

@@ -123,12 +123,12 @@ export const OrderWorshoForm = ({ }: OrderWorshoFormProps) => {
         if (workshop) {
           const { photo_of_clothing_model, photo_of_fabric, ...valueTraited } = value
           const response = initialData
-            ? await responseTraited({ queryFn: () => proxy.api.apiWorkshopOrdersPartialUpdate(initialData.id, workshop.slug, valueTraited, { type: ContentType.Json }) })
-            : await responseTraited({ queryFn: () => proxy.api.apiWorkshopOrdersCreate(workshop.slug, valueTraited, { type: ContentType.Json }) })
+            ? await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(initialData.id, workshop.slug, valueTraited, { type: ContentType.Json }) })
+            : await responseTraited({ queryFn: () => proxy.api.workshopOrdersCreate(workshop.slug, valueTraited, { type: ContentType.Json }) })
           const data = responseExtractData(response)
 
-          await responseTraited({ queryFn: () => proxy.api.apiWorkshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_clothing_model }, { type: ContentType.Json }) })
-          await responseTraited({ queryFn: () => proxy.api.apiWorkshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_fabric }, { type: ContentType.Json }) })
+          await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_clothing_model }, { type: ContentType.Json }) })
+          await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_fabric }, { type: ContentType.Json }) })
 
           notifications.show({
             title: initialData ? "Modifier" : "ajouter",

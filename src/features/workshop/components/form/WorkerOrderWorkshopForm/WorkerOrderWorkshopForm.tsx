@@ -28,7 +28,7 @@ export const WorkerOrderWorkshopForm = ({ }: WorkerOrderWorkshopFormProps) => {
     },
     onSubmit: async ({ value }) => {
       try {
-        const response = await responseTraited({ queryFn: () => proxy.api.apiWorkshopOrdersPartialUpdate(String(initialData.id), initialData.worker.workshop.slug, value as any, { type: ContentType.Json }) })
+        const response = await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(initialData.id), initialData.worker.workshop.slug, value as any, { type: ContentType.Json }) })
         const data = responseExtractData(response)
         notifications.show({
           title: "Modification de commande",

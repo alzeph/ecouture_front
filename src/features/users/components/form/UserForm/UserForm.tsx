@@ -91,13 +91,13 @@ const UserFormPost = () => {
         if (workshop) {
           const response = await responseTraited(
             {
-              queryFn: () => proxy.api.apiWorkshopUsersWorkersCreate(
+              queryFn: () => proxy.api.workshopUsersWorkersCreate(
                 workshop.slug,
                 { user: { ...userTraited } },
                 { type: ContentType.Json })
             })
           await responseTraited({
-            queryFn: () => proxy.api.apiWorkshopUsersWorkersPartialUpdate(workshop.slug, String(data.id), { user: { photo } }, { type: ContentType.FormData })
+            queryFn: () => proxy.api.workshopUsersWorkersPartialUpdate(workshop.slug, String(data.id), { user: { photo } }, { type: ContentType.FormData })
           })
 
           const data = responseExtractData(response)
@@ -182,10 +182,10 @@ const UserFormPatch = ({ initialData }: { initialData: WorkerRead }) => {
         if (workshop) {
           const { user: { photo, ...userTraited } } = value
           const response = await responseTraited({
-            queryFn: () => proxy.api.apiWorkshopUsersWorkersPartialUpdate(workshop.slug, String(initialData.id), { user: userTraited }, { type: ContentType.Json })
+            queryFn: () => proxy.api.workshopUsersWorkersPartialUpdate(workshop.slug, String(initialData.id), { user: userTraited }, { type: ContentType.Json })
           })
           await responseTraited({
-            queryFn: () => proxy.api.apiWorkshopUsersWorkersPartialUpdate(workshop.slug, String(initialData.id), { user: { photo } }, { type: ContentType.FormData })
+            queryFn: () => proxy.api.workshopUsersWorkersPartialUpdate(workshop.slug, String(initialData.id), { user: { photo } }, { type: ContentType.FormData })
           })
 
           const data = responseExtractData(response)

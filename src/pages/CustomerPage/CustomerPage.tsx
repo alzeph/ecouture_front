@@ -6,7 +6,7 @@ import { CustomerWorkshopForm } from "@features/users/components/form";
 import { OrderList } from "@features/workshop/components/common";
 import { OrderWorshoForm } from "@features/workshop/components/form";
 import { ActionIcon, Group, Radio, Stack, Text, TextInput, useMantineColorScheme, useMantineTheme } from "@mantine/core";
-import { getPageParam, traitedWhoConatinsFileExtractData, type ApiWorkshopCustomersWorkshopsListParams, type CustomerWorkshopRead } from "@shared/api";
+import { getPageParam, traitedWhoConatinsFileExtractData, type WorkshopCustomersWorkshopsListParams, type CustomerWorkshopRead } from "@shared/api";
 import { AvatarSewing, TableSewing } from "@shared/components";
 import { IconCubePlus, IconEdit, IconEye } from "@tabler/icons-react";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ export const CustomerPage = ({ }: CustomerPageProps) => {
   const { proxy, workshop } = useAuth()
   const scrollViewportRef = useRef<HTMLDivElement>(null);
 
-  const [searchCustomerByGender, setSearchCustomerByGender] = useState<ApiWorkshopCustomersWorkshopsListParams['genre'] | undefined>(undefined);
+  const [searchCustomerByGender, setSearchCustomerByGender] = useState<WorkshopCustomersWorkshopsListParams['genre'] | undefined>(undefined);
   const [searchCustomerName, setSearchCustomerName] = useState<string | undefined>(undefined);
 
 
@@ -35,7 +35,7 @@ export const CustomerPage = ({ }: CustomerPageProps) => {
     retry: !!searchCustomerByGender && !!workshop,
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopCustomersWorkshopsList({
+        const response = await proxy.api.workshopCustomersWorkshopsList({
           slug: workshop.slug,
           page: pageParam,
           genre: searchCustomerByGender,
@@ -111,7 +111,7 @@ export const CustomerPage = ({ }: CustomerPageProps) => {
             label="Selectionnez le genre"
             description='filtrez selon le genre'
             onChange={(value) => {
-              setSearchCustomerByGender(value as ApiWorkshopCustomersWorkshopsListParams['genre'] | undefined)
+              setSearchCustomerByGender(value as WorkshopCustomersWorkshopsListParams['genre'] | undefined)
               close()
             }}
             defaultValue={searchCustomerByGender}

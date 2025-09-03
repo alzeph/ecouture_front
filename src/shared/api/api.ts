@@ -1474,43 +1474,43 @@ export enum PatchedOrderWorkshopWriteRequestStatusEnum {
   DELETED = "DELETED",
 }
 
-export interface ApiHaberdasheryArticlesListParams {
+export interface HaberdasheryArticlesListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
 
-export interface ApiHaberdasheryTypesListParams {
+export interface HaberdasheryTypesListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
 
-export interface ApiNotificationExternalListParams {
+export interface NotificationExternalListParams {
   /** A page number within the paginated result set. */
   page?: number;
   workshopPk: string;
 }
 
-export interface ApiNotificationInternalListParams {
+export interface NotificationInternalListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
 
-export interface ApiUserGroupsListParams {
+export interface UserGroupsListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
 
-export interface ApiUserUserPermissionsListParams {
+export interface UserUserPermissionsListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
 
-export interface ApiWorkshopListParams {
+export interface WorkshopListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
 
-export interface ApiWorkshopCustomersWorkshopsListParams {
+export interface WorkshopCustomersWorkshopsListParams {
   /** Filtrer par genre */
   genre?: string;
   /** Filtrer si le client est actif ou non */
@@ -1525,7 +1525,7 @@ export interface ApiWorkshopCustomersWorkshopsListParams {
   slug: string;
 }
 
-export interface ApiWorkshopOrdersListParams {
+export interface WorkshopOrdersListParams {
   /** Commandes créées après cette date */
   created_after?: string;
   /** Commandes créées avant cette date */
@@ -1568,7 +1568,7 @@ export enum StatusEnum {
 }
 
 /** Statut de la commande (choices: NEW, IN_PROGRESS, COMPLETED, CANCELLED, DELETED) */
-export enum ApiWorkshopOrdersListParams1StatusEnum {
+export enum WorkshopOrdersListParams1StatusEnum {
   CANCELLED = "CANCELLED",
   COMPLETED = "COMPLETED",
   DELETED = "DELETED",
@@ -1576,21 +1576,21 @@ export enum ApiWorkshopOrdersListParams1StatusEnum {
   NEW = "NEW",
 }
 
-export interface ApiWorkshopOrdersGroupsListParams {
+export interface WorkshopOrdersGroupsListParams {
   /** A page number within the paginated result set. */
   page?: number;
   /** A unique value identifying this workshop. */
   slug: string;
 }
 
-export interface ApiWorkshopPackageHistoryListParams {
+export interface WorkshopPackageHistoryListParams {
   /** A page number within the paginated result set. */
   page?: number;
   /** A unique value identifying this workshop. */
   slug: string;
 }
 
-export interface ApiWorkshopStatsOrdersRetrieveParams {
+export interface WorkshopStatsOrdersRetrieveParams {
   /** Commandes créées après cette date */
   created_after?: string;
   /** Commandes créées avant cette date */
@@ -1619,7 +1619,7 @@ export interface ApiWorkshopStatsOrdersRetrieveParams {
   slug: string;
 }
 
-export interface ApiWorkshopUsersWorkersListParams {
+export interface WorkshopUsersWorkersListParams {
   /** Filtrer sur l’état actif du worker */
   is_active?: boolean;
   /** Filtrer sur l’autorisation du worker */
@@ -1632,7 +1632,7 @@ export interface ApiWorkshopUsersWorkersListParams {
   slug: string;
 }
 
-export interface ApiWorkshopPackageListListParams {
+export interface WorkshopPackageListListParams {
   /** A page number within the paginated result set. */
   page?: number;
 }
@@ -1825,11 +1825,11 @@ export class Api<
     /**
      * @description Takes a set of user credentials and returns an access and refresh JSON web token pair to prove the authentication of those credentials.
      *
-     * @tags api
-     * @name ApiAuthTokenCreate
+     * @tags auth
+     * @name AuthTokenCreate
      * @request POST:/api/auth/token/
      */
-    apiAuthTokenCreate: (
+    authTokenCreate: (
       data: TokenObtainPairRequest,
       params: RequestParams = {},
     ) =>
@@ -1845,11 +1845,11 @@ export class Api<
     /**
      * @description Takes a refresh type JSON web token and returns an access type JSON web token if the refresh token is valid.
      *
-     * @tags api
-     * @name ApiAuthTokenRefreshCreate
+     * @tags auth
+     * @name AuthTokenRefreshCreate
      * @request POST:/api/auth/token/refresh/
      */
-    apiAuthTokenRefreshCreate: (
+    authTokenRefreshCreate: (
       data: TokenRefreshRequest,
       params: RequestParams = {},
     ) =>
@@ -1865,13 +1865,13 @@ export class Api<
     /**
      * @description Permet de vérifier si un email est déjà utilisé. Possibilité d'exclure un email existant.
      *
-     * @tags api
-     * @name ApiHaberdasheryArticleNamesUniqueCreate
+     * @tags haberdashery
+     * @name HaberdasheryArticleNamesUniqueCreate
      * @summary Vérifie si un email existe
      * @request POST:/api/haberdashery/article-names-unique/{type_article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryArticleNamesUniqueCreate: (
+    haberdasheryArticleNamesUniqueCreate: (
       typeArticleInHaberdasheryPk: string,
       data: VerifyFieldRequest,
       params: RequestParams = {},
@@ -1889,14 +1889,14 @@ export class Api<
     /**
      * @description Voir tous les articles
      *
-     * @tags api
-     * @name ApiHaberdasheryArticlesList
+     * @tags haberdashery
+     * @name HaberdasheryArticlesList
      * @summary Voir tous les articles
      * @request GET:/api/haberdashery/articles/
      * @secure
      */
-    apiHaberdasheryArticlesList: (
-      query: ApiHaberdasheryArticlesListParams,
+    haberdasheryArticlesList: (
+      query: HaberdasheryArticlesListParams,
       params: RequestParams = {},
     ) =>
       this.request<PaginatedArticleInHaberdasheryReadList, NotFound404Response>(
@@ -1913,13 +1913,13 @@ export class Api<
     /**
      * @description Crée un article
      *
-     * @tags api
-     * @name ApiHaberdasheryArticlesCreate
+     * @tags haberdashery
+     * @name HaberdasheryArticlesCreate
      * @summary Crée un article
      * @request POST:/api/haberdashery/articles/
      * @secure
      */
-    apiHaberdasheryArticlesCreate: (
+    haberdasheryArticlesCreate: (
       data: ArticleInHaberdasheryWriteRequest,
       params: RequestParams = {},
     ) =>
@@ -1936,13 +1936,13 @@ export class Api<
     /**
      * @description Voir un article
      *
-     * @tags api
-     * @name ApiHaberdasheryArticlesRetrieve
+     * @tags haberdashery
+     * @name HaberdasheryArticlesRetrieve
      * @summary Voir un article
      * @request GET:/api/haberdashery/articles/{article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryArticlesRetrieve: (
+    haberdasheryArticlesRetrieve: (
       articleInHaberdasheryPk: string,
       params: RequestParams = {},
     ) =>
@@ -1957,13 +1957,13 @@ export class Api<
     /**
      * @description Modifier un article
      *
-     * @tags api
-     * @name ApiHaberdasheryArticlesPartialUpdate
+     * @tags haberdashery
+     * @name HaberdasheryArticlesPartialUpdate
      * @summary Modifier un article
      * @request PATCH:/api/haberdashery/articles/{article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryArticlesPartialUpdate: (
+    haberdasheryArticlesPartialUpdate: (
       articleInHaberdasheryPk: string,
       data: PatchedArticleInHaberdasheryWriteRequest,
       params: RequestParams = {},
@@ -1981,13 +1981,13 @@ export class Api<
     /**
      * @description Supprimer un article
      *
-     * @tags api
-     * @name ApiHaberdasheryArticlesDestroy
+     * @tags haberdashery
+     * @name HaberdasheryArticlesDestroy
      * @summary Supprimer un article
      * @request DELETE:/api/haberdashery/articles/{article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryArticlesDestroy: (
+    haberdasheryArticlesDestroy: (
       articleInHaberdasheryPk: string,
       params: RequestParams = {},
     ) =>
@@ -2002,13 +2002,13 @@ export class Api<
     /**
      * @description Voir la haberdashery
      *
-     * @tags api
-     * @name ApiHaberdasheryHaberdasheriesRetrieve
+     * @tags haberdashery
+     * @name HaberdasheryHaberdasheriesRetrieve
      * @summary Voir la haberdashery
      * @request GET:/api/haberdashery/haberdasheries/
      * @secure
      */
-    apiHaberdasheryHaberdasheriesRetrieve: (params: RequestParams = {}) =>
+    haberdasheryHaberdasheriesRetrieve: (params: RequestParams = {}) =>
       this.request<HaberdasheryRead, NotFound404Response>({
         path: `/api/haberdashery/haberdasheries/`,
         method: "GET",
@@ -2020,14 +2020,14 @@ export class Api<
     /**
      * @description Voir tous les types d'article
      *
-     * @tags api
-     * @name ApiHaberdasheryTypesList
+     * @tags haberdashery
+     * @name HaberdasheryTypesList
      * @summary Voir tous les types d'article
      * @request GET:/api/haberdashery/types/
      * @secure
      */
-    apiHaberdasheryTypesList: (
-      query: ApiHaberdasheryTypesListParams,
+    haberdasheryTypesList: (
+      query: HaberdasheryTypesListParams,
       params: RequestParams = {},
     ) =>
       this.request<
@@ -2045,13 +2045,13 @@ export class Api<
     /**
      * @description Crée un type d'article
      *
-     * @tags api
-     * @name ApiHaberdasheryTypesCreate
+     * @tags haberdashery
+     * @name HaberdasheryTypesCreate
      * @summary Crée un type d'article
      * @request POST:/api/haberdashery/types/
      * @secure
      */
-    apiHaberdasheryTypesCreate: (
+    haberdasheryTypesCreate: (
       data: TypeArticleInHaberdasheryWriteRequest,
       params: RequestParams = {},
     ) =>
@@ -2068,13 +2068,13 @@ export class Api<
     /**
      * @description Voir un type d'article
      *
-     * @tags api
-     * @name ApiHaberdasheryTypesRetrieve
+     * @tags haberdashery
+     * @name HaberdasheryTypesRetrieve
      * @summary Voir un type d'article
      * @request GET:/api/haberdashery/types/{type_article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryTypesRetrieve: (
+    haberdasheryTypesRetrieve: (
       typeArticleInHaberdasheryPk: string,
       params: RequestParams = {},
     ) =>
@@ -2089,13 +2089,13 @@ export class Api<
     /**
      * @description Modifier un type d'article
      *
-     * @tags api
-     * @name ApiHaberdasheryTypesPartialUpdate
+     * @tags haberdashery
+     * @name HaberdasheryTypesPartialUpdate
      * @summary Modifier un type d'article
      * @request PATCH:/api/haberdashery/types/{type_article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryTypesPartialUpdate: (
+    haberdasheryTypesPartialUpdate: (
       typeArticleInHaberdasheryPk: string,
       data: PatchedTypeArticleInHaberdasheryWriteRequest,
       params: RequestParams = {},
@@ -2113,13 +2113,13 @@ export class Api<
     /**
      * @description Supprimer un type d'article
      *
-     * @tags api
-     * @name ApiHaberdasheryTypesDestroy
+     * @tags haberdashery
+     * @name HaberdasheryTypesDestroy
      * @summary Supprimer un type d'article
      * @request DELETE:/api/haberdashery/types/{type_article_in_haberdashery_pk}/
      * @secure
      */
-    apiHaberdasheryTypesDestroy: (
+    haberdasheryTypesDestroy: (
       typeArticleInHaberdasheryPk: string,
       params: RequestParams = {},
     ) =>
@@ -2134,13 +2134,13 @@ export class Api<
     /**
      * @description Permet de vérifier si un email est déjà utilisé. Possibilité d'exclure un email existant.
      *
-     * @tags api
-     * @name ApiHaberdasheryValidatorsNamesUniqueCreate
+     * @tags haberdashery
+     * @name HaberdasheryValidatorsNamesUniqueCreate
      * @summary Vérifie si un email existe
      * @request POST:/api/haberdashery/validators-names-unique/
      * @secure
      */
-    apiHaberdasheryValidatorsNamesUniqueCreate: (
+    haberdasheryValidatorsNamesUniqueCreate: (
       data: VerifyFieldRequest,
       params: RequestParams = {},
     ) =>
@@ -2157,13 +2157,13 @@ export class Api<
     /**
      * @description Voir si le worker est autorisé
      *
-     * @tags api
-     * @name ApiHaberdasheryWorkerAuthorizedCreate
+     * @tags haberdashery
+     * @name HaberdasheryWorkerAuthorizedCreate
      * @summary Voir si le worker est autorisé
      * @request POST:/api/haberdashery/worker-authorized/
      * @secure
      */
-    apiHaberdasheryWorkerAuthorizedCreate: (params: RequestParams = {}) =>
+    haberdasheryWorkerAuthorizedCreate: (params: RequestParams = {}) =>
       this.request<ExistsResponse, NotFound404Response>({
         path: `/api/haberdashery/worker-authorized/`,
         method: "POST",
@@ -2175,14 +2175,14 @@ export class Api<
     /**
      * @description Voir les notifications externes
      *
-     * @tags api
-     * @name ApiNotificationExternalList
+     * @tags notification
+     * @name NotificationExternalList
      * @summary Voir les notifications externes
      * @request GET:/api/notification/external/{workshop_pk}/
      * @secure
      */
-    apiNotificationExternalList: (
-      { workshopPk, ...query }: ApiNotificationExternalListParams,
+    notificationExternalList: (
+      { workshopPk, ...query }: NotificationExternalListParams,
       params: RequestParams = {},
     ) =>
       this.request<PaginatedExternalNotificationReadList, NotFound404Response>({
@@ -2197,14 +2197,14 @@ export class Api<
     /**
      * @description Voir les notifications internes
      *
-     * @tags api
-     * @name ApiNotificationInternalList
+     * @tags notification
+     * @name NotificationInternalList
      * @summary Voir les notifications internes
      * @request GET:/api/notification/internal/
      * @secure
      */
-    apiNotificationInternalList: (
-      query: ApiNotificationInternalListParams,
+    notificationInternalList: (
+      query: NotificationInternalListParams,
       params: RequestParams = {},
     ) =>
       this.request<PaginatedInternalNotificatinoReadList, NotFound404Response>({
@@ -2219,13 +2219,13 @@ export class Api<
     /**
      * @description Modifier une notification interne
      *
-     * @tags api
-     * @name ApiNotificationInternalPartialUpdate
+     * @tags notification
+     * @name NotificationInternalPartialUpdate
      * @summary Modifier une notification interne
      * @request PATCH:/api/notification/internal/{notification_id}/
      * @secure
      */
-    apiNotificationInternalPartialUpdate: (
+    notificationInternalPartialUpdate: (
       notificationId: string,
       data: PatchedInternalNotificationWriteRequest,
       params: RequestParams = {},
@@ -2243,12 +2243,12 @@ export class Api<
     /**
      * @description ViewSet pour la gestion des utilisateurs et la réinitialisation des mots de passe. Combine les actions de UserMixin et UserPasswordMixin.
      *
-     * @tags api
-     * @name ApiUserForgotPasswordCreate
+     * @tags user
+     * @name UserForgotPasswordCreate
      * @request POST:/api/user/forgot-password/
      * @secure
      */
-    apiUserForgotPasswordCreate: (params: RequestParams = {}) =>
+    userForgotPasswordCreate: (params: RequestParams = {}) =>
       this.request<void, any>({
         path: `/api/user/forgot-password/`,
         method: "POST",
@@ -2259,16 +2259,13 @@ export class Api<
     /**
      * @description permet de mettre recuperer la liste des groupes
      *
-     * @tags api
-     * @name ApiUserGroupsList
+     * @tags user
+     * @name UserGroupsList
      * @summary recuperer la liste des groupes
      * @request GET:/api/user/groups/
      * @secure
      */
-    apiUserGroupsList: (
-      query: ApiUserGroupsListParams,
-      params: RequestParams = {},
-    ) =>
+    userGroupsList: (query: UserGroupsListParams, params: RequestParams = {}) =>
       this.request<PaginatedGroupReadList, any>({
         path: `/api/user/groups/`,
         method: "GET",
@@ -2281,13 +2278,13 @@ export class Api<
     /**
      * @description permet de recuperer les infos d'un utilisateur
      *
-     * @tags api
-     * @name ApiUserInfoDetailRetrieve
+     * @tags user
+     * @name UserInfoDetailRetrieve
      * @summary recuperer les infos d'un utilisateur
      * @request GET:/api/user/info-detail/
      * @secure
      */
-    apiUserInfoDetailRetrieve: (params: RequestParams = {}) =>
+    userInfoDetailRetrieve: (params: RequestParams = {}) =>
       this.request<WorkerRead, any>({
         path: `/api/user/info-detail/`,
         method: "GET",
@@ -2299,12 +2296,12 @@ export class Api<
     /**
      * @description Modifier le mot de passe d'un utilisateur donné.
      *
-     * @tags api
-     * @name ApiUserModifyPasswordUpdate
+     * @tags user
+     * @name UserModifyPasswordUpdate
      * @request PUT:/api/user/modify-password/{user_id}/
      * @secure
      */
-    apiUserModifyPasswordUpdate: (userId: string, params: RequestParams = {}) =>
+    userModifyPasswordUpdate: (userId: string, params: RequestParams = {}) =>
       this.request<void, any>({
         path: `/api/user/modify-password/${userId}/`,
         method: "PUT",
@@ -2315,12 +2312,12 @@ export class Api<
     /**
      * @description Modifier le mot de passe d'un utilisateur donné.
      *
-     * @tags api
-     * @name ApiUserModifyPasswordPartialUpdate
+     * @tags user
+     * @name UserModifyPasswordPartialUpdate
      * @request PATCH:/api/user/modify-password/{user_id}/
      * @secure
      */
-    apiUserModifyPasswordPartialUpdate: (
+    userModifyPasswordPartialUpdate: (
       userId: string,
       params: RequestParams = {},
     ) =>
@@ -2334,13 +2331,13 @@ export class Api<
     /**
      * @description permet de mettre à jour un utilisateur
      *
-     * @tags api
-     * @name ApiUserModifyUpdate
+     * @tags user
+     * @name UserModifyUpdate
      * @summary metre a jour un utilisateur
      * @request PUT:/api/user/modify/{user_id}/
      * @secure
      */
-    apiUserModifyUpdate: (
+    userModifyUpdate: (
       userId: string,
       data: UserWriteRequest,
       params: RequestParams = {},
@@ -2358,13 +2355,13 @@ export class Api<
     /**
      * @description permet de mettre à jour un utilisateur
      *
-     * @tags api
-     * @name ApiUserModifyPartialUpdate
+     * @tags user
+     * @name UserModifyPartialUpdate
      * @summary metre a jour un utilisateur
      * @request PATCH:/api/user/modify/{user_id}/
      * @secure
      */
-    apiUserModifyPartialUpdate: (
+    userModifyPartialUpdate: (
       userId: string,
       data: PatchedUserWriteRequest,
       params: RequestParams = {},
@@ -2382,12 +2379,12 @@ export class Api<
     /**
      * @description ViewSet pour la gestion des utilisateurs et la réinitialisation des mots de passe. Combine les actions de UserMixin et UserPasswordMixin.
      *
-     * @tags api
-     * @name ApiUserResetPasswordCreate
+     * @tags user
+     * @name UserResetPasswordCreate
      * @request POST:/api/user/reset-password/
      * @secure
      */
-    apiUserResetPasswordCreate: (params: RequestParams = {}) =>
+    userResetPasswordCreate: (params: RequestParams = {}) =>
       this.request<void, any>({
         path: `/api/user/reset-password/`,
         method: "POST",
@@ -2398,14 +2395,14 @@ export class Api<
     /**
      * @description permet de mettre recuperer la liste des permissions
      *
-     * @tags api
-     * @name ApiUserUserPermissionsList
+     * @tags user
+     * @name UserUserPermissionsList
      * @summary recuperer la liste des permissions
      * @request GET:/api/user/user-permissions/
      * @secure
      */
-    apiUserUserPermissionsList: (
-      query: ApiUserUserPermissionsListParams,
+    userUserPermissionsList: (
+      query: UserUserPermissionsListParams,
       params: RequestParams = {},
     ) =>
       this.request<PaginatedPermissionReadList, any>({
@@ -2420,13 +2417,13 @@ export class Api<
     /**
      * @description Permet de vérifier si un email est déjà utilisé. Possibilité d'exclure un email existant.
      *
-     * @tags api
-     * @name ApiUserVerifyEmailCreate
+     * @tags user
+     * @name UserVerifyEmailCreate
      * @summary Vérifie si un email existe
      * @request POST:/api/user/verify-email/
      * @secure
      */
-    apiUserVerifyEmailCreate: (
+    userVerifyEmailCreate: (
       data: VerifyFieldRequest,
       params: RequestParams = {},
     ) =>
@@ -2443,12 +2440,12 @@ export class Api<
     /**
      * @description Vérifie que le mot de passe fourni correspond au mot de passe actuel de l'utilisateur.
      *
-     * @tags api
-     * @name ApiUserVerifyPasswordActualCreate
+     * @tags user
+     * @name UserVerifyPasswordActualCreate
      * @request POST:/api/user/verify-password-actual/{user_id}/
      * @secure
      */
-    apiUserVerifyPasswordActualCreate: (
+    userVerifyPasswordActualCreate: (
       userId: string,
       params: RequestParams = {},
     ) =>
@@ -2462,13 +2459,13 @@ export class Api<
     /**
      * @description Permet de vérifier si un phone est déjà utilisé. Possibilité d'exclure un phone existant.
      *
-     * @tags api
-     * @name ApiUserVerifyPhoneCreate
+     * @tags user
+     * @name UserVerifyPhoneCreate
      * @summary Vérifie si un phone existe
      * @request POST:/api/user/verify-phone/
      * @secure
      */
-    apiUserVerifyPhoneCreate: (
+    userVerifyPhoneCreate: (
       data: VerifyFieldRequest,
       params: RequestParams = {},
     ) =>
@@ -2485,15 +2482,12 @@ export class Api<
     /**
      * @description ViewSet for managing workshops.
      *
-     * @tags api
-     * @name ApiWorkshopList
+     * @tags workshop
+     * @name WorkshopList
      * @request GET:/api/workshop/
      * @secure
      */
-    apiWorkshopList: (
-      query: ApiWorkshopListParams,
-      params: RequestParams = {},
-    ) =>
+    workshopList: (query: WorkshopListParams, params: RequestParams = {}) =>
       this.request<PaginatedWorkshopReadList, any>({
         path: `/api/workshop/`,
         method: "GET",
@@ -2506,12 +2500,12 @@ export class Api<
     /**
      * @description ViewSet for managing workshops.
      *
-     * @tags api
-     * @name ApiWorkshopCreate
+     * @tags workshop
+     * @name WorkshopCreate
      * @request POST:/api/workshop/
      * @secure
      */
-    apiWorkshopCreate: (
+    workshopCreate: (
       data: WorkerWriteForWorkshopRequest,
       params: RequestParams = {},
     ) =>
@@ -2528,12 +2522,12 @@ export class Api<
     /**
      * @description ViewSet for managing workshops.
      *
-     * @tags api
-     * @name ApiWorkshopRetrieve
+     * @tags workshop
+     * @name WorkshopRetrieve
      * @request GET:/api/workshop/{slug}/
      * @secure
      */
-    apiWorkshopRetrieve: (slug: string, params: RequestParams = {}) =>
+    workshopRetrieve: (slug: string, params: RequestParams = {}) =>
       this.request<WorkshopRead, any>({
         path: `/api/workshop/${slug}/`,
         method: "GET",
@@ -2545,12 +2539,12 @@ export class Api<
     /**
      * @description ViewSet for managing workshops.
      *
-     * @tags api
-     * @name ApiWorkshopUpdate
+     * @tags workshop
+     * @name WorkshopUpdate
      * @request PUT:/api/workshop/{slug}/
      * @secure
      */
-    apiWorkshopUpdate: (
+    workshopUpdate: (
       slug: string,
       data: WorkshopWriteRequest,
       params: RequestParams = {},
@@ -2568,12 +2562,12 @@ export class Api<
     /**
      * @description ViewSet for managing workshops.
      *
-     * @tags api
-     * @name ApiWorkshopPartialUpdate
+     * @tags workshop
+     * @name WorkshopPartialUpdate
      * @request PATCH:/api/workshop/{slug}/
      * @secure
      */
-    apiWorkshopPartialUpdate: (
+    workshopPartialUpdate: (
       slug: string,
       data: PatchedWorkshopWriteRequest,
       params: RequestParams = {},
@@ -2591,12 +2585,12 @@ export class Api<
     /**
      * @description ViewSet for managing workshops.
      *
-     * @tags api
-     * @name ApiWorkshopDestroy
+     * @tags workshop
+     * @name WorkshopDestroy
      * @request DELETE:/api/workshop/{slug}/
      * @secure
      */
-    apiWorkshopDestroy: (slug: string, params: RequestParams = {}) =>
+    workshopDestroy: (slug: string, params: RequestParams = {}) =>
       this.request<void, any>({
         path: `/api/workshop/${slug}/`,
         method: "DELETE",
@@ -2607,14 +2601,14 @@ export class Api<
     /**
      * @description permet de recuperer la liste des clients de l'atelier
      *
-     * @tags api
-     * @name ApiWorkshopCustomersWorkshopsList
+     * @tags workshop
+     * @name WorkshopCustomersWorkshopsList
      * @summary recuperer la liste des clients de l'atelier
      * @request GET:/api/workshop/{slug}/customers-workshops/
      * @secure
      */
-    apiWorkshopCustomersWorkshopsList: (
-      { slug, ...query }: ApiWorkshopCustomersWorkshopsListParams,
+    workshopCustomersWorkshopsList: (
+      { slug, ...query }: WorkshopCustomersWorkshopsListParams,
       params: RequestParams = {},
     ) =>
       this.request<
@@ -2632,13 +2626,13 @@ export class Api<
     /**
      * @description permet de créer un client de l'atelier
      *
-     * @tags api
-     * @name ApiWorkshopCustomersWorkshopsCreate
+     * @tags workshop
+     * @name WorkshopCustomersWorkshopsCreate
      * @summary créer un client de l'atelier
      * @request POST:/api/workshop/{slug}/customers-workshops/
      * @secure
      */
-    apiWorkshopCustomersWorkshopsCreate: (
+    workshopCustomersWorkshopsCreate: (
       slug: string,
       data: CustomerWorkshopWriteRequest,
       params: RequestParams = {},
@@ -2659,13 +2653,13 @@ export class Api<
     /**
      * @description permet de recuperer un client
      *
-     * @tags api
-     * @name ApiWorkshopCustomersWorkshopsRetrieve
+     * @tags workshop
+     * @name WorkshopCustomersWorkshopsRetrieve
      * @summary recuperer un client
      * @request GET:/api/workshop/{slug}/customers-workshops/{customer_pk}/
      * @secure
      */
-    apiWorkshopCustomersWorkshopsRetrieve: (
+    workshopCustomersWorkshopsRetrieve: (
       customerPk: string,
       slug: string,
       params: RequestParams = {},
@@ -2684,13 +2678,13 @@ export class Api<
     /**
      * @description permet de mettre a jour un client
      *
-     * @tags api
-     * @name ApiWorkshopCustomersWorkshopsPartialUpdate
+     * @tags workshop
+     * @name WorkshopCustomersWorkshopsPartialUpdate
      * @summary mettre a jour un client
      * @request PATCH:/api/workshop/{slug}/customers-workshops/{customer_pk}/
      * @secure
      */
-    apiWorkshopCustomersWorkshopsPartialUpdate: (
+    workshopCustomersWorkshopsPartialUpdate: (
       customerPk: string,
       slug: string,
       data: PatchedCustomerWorkshopWriteRequest,
@@ -2712,13 +2706,13 @@ export class Api<
     /**
      * @description permet de supprimer un client
      *
-     * @tags api
-     * @name ApiWorkshopCustomersWorkshopsDestroy
+     * @tags workshop
+     * @name WorkshopCustomersWorkshopsDestroy
      * @summary supprimer un client
      * @request DELETE:/api/workshop/{slug}/customers-workshops/{customer_pk}/
      * @secure
      */
-    apiWorkshopCustomersWorkshopsDestroy: (
+    workshopCustomersWorkshopsDestroy: (
       customerPk: string,
       slug: string,
       params: RequestParams = {},
@@ -2733,13 +2727,13 @@ export class Api<
     /**
      * @description permet de verifier le numero de telephone d'un client existe ou non
      *
-     * @tags api
-     * @name ApiWorkshopCustomersVerifyNumbersCreate
+     * @tags workshop
+     * @name WorkshopCustomersVerifyNumbersCreate
      * @summary verifier le numero de telephone d'un client existe ou non
      * @request POST:/api/workshop/{slug}/customers/verify-numbers/
      * @secure
      */
-    apiWorkshopCustomersVerifyNumbersCreate: (
+    workshopCustomersVerifyNumbersCreate: (
       slug: string,
       data: VerifyFieldRequest,
       params: RequestParams = {},
@@ -2757,13 +2751,13 @@ export class Api<
     /**
      * @description Crée un nouveau fitting dans l’atelier.
      *
-     * @tags api
-     * @name ApiWorkshopFittingsCreate
+     * @tags workshop
+     * @name WorkshopFittingsCreate
      * @summary Créer un fitting
      * @request POST:/api/workshop/{slug}/fittings/
      * @secure
      */
-    apiWorkshopFittingsCreate: (
+    workshopFittingsCreate: (
       slug: string,
       data: FittingWriteRequest,
       params: RequestParams = {},
@@ -2781,14 +2775,14 @@ export class Api<
     /**
      * @description permet de recuperer la liste des commandes
      *
-     * @tags api
-     * @name ApiWorkshopOrdersList
+     * @tags workshop
+     * @name WorkshopOrdersList
      * @summary recuperer la liste des commandes
      * @request GET:/api/workshop/{slug}/orders/
      * @secure
      */
-    apiWorkshopOrdersList: (
-      { slug, ...query }: ApiWorkshopOrdersListParams,
+    workshopOrdersList: (
+      { slug, ...query }: WorkshopOrdersListParams,
       params: RequestParams = {},
     ) =>
       this.request<
@@ -2806,13 +2800,13 @@ export class Api<
     /**
      * @description permet de créer une commande
      *
-     * @tags api
-     * @name ApiWorkshopOrdersCreate
+     * @tags workshop
+     * @name WorkshopOrdersCreate
      * @summary creer une commande
      * @request POST:/api/workshop/{slug}/orders/
      * @secure
      */
-    apiWorkshopOrdersCreate: (
+    workshopOrdersCreate: (
       slug: string,
       data: OrderWorkshopWriteRequest,
       params: RequestParams = {},
@@ -2832,13 +2826,13 @@ export class Api<
     /**
      * @description permet de recuperer une commande
      *
-     * @tags api
-     * @name ApiWorkshopOrdersRetrieve
+     * @tags workshop
+     * @name WorkshopOrdersRetrieve
      * @summary recuperer une commande
      * @request GET:/api/workshop/{slug}/orders/{order_pk}/
      * @secure
      */
-    apiWorkshopOrdersRetrieve: (
+    workshopOrdersRetrieve: (
       orderPk: string,
       slug: string,
       params: RequestParams = {},
@@ -2856,13 +2850,13 @@ export class Api<
     /**
      * @description permet de mettre a jour une commande
      *
-     * @tags api
-     * @name ApiWorkshopOrdersPartialUpdate
+     * @tags workshop
+     * @name WorkshopOrdersPartialUpdate
      * @summary mettre a jour une commande
      * @request PATCH:/api/workshop/{slug}/orders/{order_pk}/
      * @secure
      */
-    apiWorkshopOrdersPartialUpdate: (
+    workshopOrdersPartialUpdate: (
       orderPk: string,
       slug: string,
       data: PatchedOrderWorkshopWriteRequest,
@@ -2883,13 +2877,13 @@ export class Api<
     /**
      * @description permet de supprimer une commande
      *
-     * @tags api
-     * @name ApiWorkshopOrdersDestroy
+     * @tags workshop
+     * @name WorkshopOrdersDestroy
      * @summary supprimer une commande
      * @request DELETE:/api/workshop/{slug}/orders/{order_pk}/
      * @secure
      */
-    apiWorkshopOrdersDestroy: (
+    workshopOrdersDestroy: (
       orderPk: string,
       slug: string,
       params: RequestParams = {},
@@ -2904,13 +2898,13 @@ export class Api<
     /**
      * @description Modifie un fitting dans l’atelier.
      *
-     * @tags api
-     * @name ApiWorkshopOrdersFittingsPartialUpdate
+     * @tags workshop
+     * @name WorkshopOrdersFittingsPartialUpdate
      * @summary Modifier un fitting
      * @request PATCH:/api/workshop/{slug}/orders/fittings/{fitting_pk}/
      * @secure
      */
-    apiWorkshopOrdersFittingsPartialUpdate: (
+    workshopOrdersFittingsPartialUpdate: (
       fittingPk: string,
       slug: string,
       data: PatchedFittingWriteRequest,
@@ -2929,13 +2923,13 @@ export class Api<
     /**
      * @description Supprime un fitting dans l’atelier.
      *
-     * @tags api
-     * @name ApiWorkshopOrdersFittingsDestroy
+     * @tags workshop
+     * @name WorkshopOrdersFittingsDestroy
      * @summary Supprimer un fitting
      * @request DELETE:/api/workshop/{slug}/orders/fittings/{fitting_pk}/
      * @secure
      */
-    apiWorkshopOrdersFittingsDestroy: (
+    workshopOrdersFittingsDestroy: (
       fittingPk: string,
       slug: string,
       params: RequestParams = {},
@@ -2950,14 +2944,14 @@ export class Api<
     /**
      * @description permet de recuperer la liste des groupes de commandes
      *
-     * @tags api
-     * @name ApiWorkshopOrdersGroupsList
+     * @tags workshop
+     * @name WorkshopOrdersGroupsList
      * @summary recuperer la liste des groupes de commandes
      * @request GET:/api/workshop/{slug}/orders/groups/
      * @secure
      */
-    apiWorkshopOrdersGroupsList: (
-      { slug, ...query }: ApiWorkshopOrdersGroupsListParams,
+    workshopOrdersGroupsList: (
+      { slug, ...query }: WorkshopOrdersGroupsListParams,
       params: RequestParams = {},
     ) =>
       this.request<
@@ -2975,13 +2969,13 @@ export class Api<
     /**
      * @description permet de créer un groupe de commandes
      *
-     * @tags api
-     * @name ApiWorkshopOrdersGroupsCreate
+     * @tags workshop
+     * @name WorkshopOrdersGroupsCreate
      * @summary creer un groupe de commandes
      * @request POST:/api/workshop/{slug}/orders/groups/
      * @secure
      */
-    apiWorkshopOrdersGroupsCreate: (
+    workshopOrdersGroupsCreate: (
       slug: string,
       data: OrderWorkshopGroupWriteRequest,
       params: RequestParams = {},
@@ -3002,13 +2996,13 @@ export class Api<
     /**
      * @description permet de recuperer un groupe de commandes
      *
-     * @tags api
-     * @name ApiWorkshopOrdersGroupsRetrieve
+     * @tags workshop
+     * @name WorkshopOrdersGroupsRetrieve
      * @summary recuperer un groupe de commandes
      * @request GET:/api/workshop/{slug}/orders/groups/{order_group_pk}/
      * @secure
      */
-    apiWorkshopOrdersGroupsRetrieve: (
+    workshopOrdersGroupsRetrieve: (
       orderGroupPk: string,
       slug: string,
       params: RequestParams = {},
@@ -3027,13 +3021,13 @@ export class Api<
     /**
      * @description permet de mettre a jour un groupe de commandes
      *
-     * @tags api
-     * @name ApiWorkshopOrdersGroupsPartialUpdate
+     * @tags workshop
+     * @name WorkshopOrdersGroupsPartialUpdate
      * @summary mettre a jour un groupe de commandes
      * @request PATCH:/api/workshop/{slug}/orders/groups/{order_group_pk}/
      * @secure
      */
-    apiWorkshopOrdersGroupsPartialUpdate: (
+    workshopOrdersGroupsPartialUpdate: (
       orderGroupPk: string,
       slug: string,
       data: PatchedOrderWorkshopGroupWriteRequest,
@@ -3055,13 +3049,13 @@ export class Api<
     /**
      * @description permet de supprimer un groupe de commandes
      *
-     * @tags api
-     * @name ApiWorkshopOrdersGroupsDestroy
+     * @tags workshop
+     * @name WorkshopOrdersGroupsDestroy
      * @summary supprimer un groupe de commandes
      * @request DELETE:/api/workshop/{slug}/orders/groups/{order_group_pk}/
      * @secure
      */
-    apiWorkshopOrdersGroupsDestroy: (
+    workshopOrdersGroupsDestroy: (
       orderGroupPk: string,
       slug: string,
       params: RequestParams = {},
@@ -3076,14 +3070,14 @@ export class Api<
     /**
      * @description Permet de recupere la lsite de tout les abonnements
      *
-     * @tags api
-     * @name ApiWorkshopPackageHistoryList
+     * @tags workshop
+     * @name WorkshopPackageHistoryList
      * @summary recupere hytorique des abonnements
      * @request GET:/api/workshop/{slug}/package-history/
      * @secure
      */
-    apiWorkshopPackageHistoryList: (
-      { slug, ...query }: ApiWorkshopPackageHistoryListParams,
+    workshopPackageHistoryList: (
+      { slug, ...query }: WorkshopPackageHistoryListParams,
       params: RequestParams = {},
     ) =>
       this.request<PaginatedPackageHistoryReadList, NotFound404Response>({
@@ -3098,16 +3092,13 @@ export class Api<
     /**
      * @description Permet de payer un nouvelle abonnement
      *
-     * @tags api
-     * @name ApiWorkshopPackageHistoryCreate
+     * @tags workshop
+     * @name WorkshopPackageHistoryCreate
      * @summary payer un nouvelle abonnement
      * @request POST:/api/workshop/{slug}/package-history/
      * @secure
      */
-    apiWorkshopPackageHistoryCreate: (
-      slug: string,
-      params: RequestParams = {},
-    ) =>
+    workshopPackageHistoryCreate: (slug: string, params: RequestParams = {}) =>
       this.request<PackageHistoryRead, NotFound404Response>({
         path: `/api/workshop/${slug}/package-history/`,
         method: "POST",
@@ -3119,13 +3110,13 @@ export class Api<
     /**
      * @description Modifie un setting dans l’atelier.
      *
-     * @tags api
-     * @name ApiWorkshopSettingPartialUpdate
+     * @tags workshop
+     * @name WorkshopSettingPartialUpdate
      * @summary Modifier un setting
      * @request PATCH:/api/workshop/{slug}/setting/
      * @secure
      */
-    apiWorkshopSettingPartialUpdate: (
+    workshopSettingPartialUpdate: (
       slug: string,
       data: PatchedSettingWriteRequest,
       params: RequestParams = {},
@@ -3143,13 +3134,13 @@ export class Api<
     /**
      * @description Voir si il le quota de clients est atteint
      *
-     * @tags api
-     * @name ApiWorkshopSettingCustomersAuthorisedRetrieve
+     * @tags workshop
+     * @name WorkshopSettingCustomersAuthorisedRetrieve
      * @summary Voir si il le quota de clients est atteint
      * @request GET:/api/workshop/{slug}/setting/customers/authorised/
      * @secure
      */
-    apiWorkshopSettingCustomersAuthorisedRetrieve: (
+    workshopSettingCustomersAuthorisedRetrieve: (
       slug: string,
       params: RequestParams = {},
     ) =>
@@ -3164,13 +3155,13 @@ export class Api<
     /**
      * @description Voir si il le quota de ajustements est atteint
      *
-     * @tags api
-     * @name ApiWorkshopSettingFittingsAuthorisedRetrieve
+     * @tags workshop
+     * @name WorkshopSettingFittingsAuthorisedRetrieve
      * @summary Voir si il le quota de ajustements est atteint
      * @request GET:/api/workshop/{slug}/setting/fittings/authorised/
      * @secure
      */
-    apiWorkshopSettingFittingsAuthorisedRetrieve: (
+    workshopSettingFittingsAuthorisedRetrieve: (
       slug: string,
       params: RequestParams = {},
     ) =>
@@ -3185,13 +3176,13 @@ export class Api<
     /**
      * @description Voir si il le quota de commandes est atteint
      *
-     * @tags api
-     * @name ApiWorkshopSettingOrdersAuthorisedRetrieve
+     * @tags workshop
+     * @name WorkshopSettingOrdersAuthorisedRetrieve
      * @summary Voir si il le quota de commandes est atteint
      * @request GET:/api/workshop/{slug}/setting/orders/authorised/
      * @secure
      */
-    apiWorkshopSettingOrdersAuthorisedRetrieve: (
+    workshopSettingOrdersAuthorisedRetrieve: (
       slug: string,
       params: RequestParams = {},
     ) =>
@@ -3206,13 +3197,13 @@ export class Api<
     /**
      * @description Voir si il le quota de tralleurs est atteint
      *
-     * @tags api
-     * @name ApiWorkshopSettingWorkersAuthorisedRetrieve
+     * @tags workshop
+     * @name WorkshopSettingWorkersAuthorisedRetrieve
      * @summary Voir si il le quota de tralleurs est atteint
      * @request GET:/api/workshop/{slug}/setting/workers/authorised/
      * @secure
      */
-    apiWorkshopSettingWorkersAuthorisedRetrieve: (
+    workshopSettingWorkersAuthorisedRetrieve: (
       slug: string,
       params: RequestParams = {},
     ) =>
@@ -3227,13 +3218,13 @@ export class Api<
     /**
      * @description Voir si le tralleur est autorisé à créer un client
      *
-     * @tags api
-     * @name ApiWorkshopSettingsCustomersWorkerAuthorisedCreate
+     * @tags workshop
+     * @name WorkshopSettingsCustomersWorkerAuthorisedCreate
      * @summary Voir si le tralleur est autorisé à créer un client
      * @request POST:/api/workshop/{slug}/settings/customers/worker-authorised/
      * @secure
      */
-    apiWorkshopSettingsCustomersWorkerAuthorisedCreate: (
+    workshopSettingsCustomersWorkerAuthorisedCreate: (
       slug: string,
       data: WorkerAuthorisationRequest,
       params: RequestParams = {},
@@ -3251,13 +3242,13 @@ export class Api<
     /**
      * @description Voir si le tralleur est autorisé à créer un ajustement
      *
-     * @tags api
-     * @name ApiWorkshopSettingsFittingsWorkerAuthorisedCreate
+     * @tags workshop
+     * @name WorkshopSettingsFittingsWorkerAuthorisedCreate
      * @summary Voir si le tralleur est autorisé à créer un ajustement
      * @request POST:/api/workshop/{slug}/settings/fittings/worker-authorised/
      * @secure
      */
-    apiWorkshopSettingsFittingsWorkerAuthorisedCreate: (
+    workshopSettingsFittingsWorkerAuthorisedCreate: (
       slug: string,
       data: WorkerAuthorisationRequest,
       params: RequestParams = {},
@@ -3275,13 +3266,13 @@ export class Api<
     /**
      * @description Voir si le tralleur est autorisé à créer une commande
      *
-     * @tags api
-     * @name ApiWorkshopSettingsOrdersWorkerAuthorisedCreate
+     * @tags workshop
+     * @name WorkshopSettingsOrdersWorkerAuthorisedCreate
      * @summary Voir si le tralleur est autorisé à créer une commande
      * @request POST:/api/workshop/{slug}/settings/orders/worker-authorised/
      * @secure
      */
-    apiWorkshopSettingsOrdersWorkerAuthorisedCreate: (
+    workshopSettingsOrdersWorkerAuthorisedCreate: (
       slug: string,
       data: WorkerAuthorisationRequest,
       params: RequestParams = {},
@@ -3299,13 +3290,13 @@ export class Api<
     /**
      * @description Voir si le tralleur est autorisé à créer un ajustement
      *
-     * @tags api
-     * @name ApiWorkshopSettingsSettingsWorkerAuthorisedCreate
+     * @tags workshop
+     * @name WorkshopSettingsSettingsWorkerAuthorisedCreate
      * @summary Voir si le tralleur est autorisé à créer un ajustement
      * @request POST:/api/workshop/{slug}/settings/settings/worker-authorised/
      * @secure
      */
-    apiWorkshopSettingsSettingsWorkerAuthorisedCreate: (
+    workshopSettingsSettingsWorkerAuthorisedCreate: (
       slug: string,
       data: WorkerAuthorisationRequest,
       params: RequestParams = {},
@@ -3323,13 +3314,13 @@ export class Api<
     /**
      * @description Voir si le tralleur est autorisé à créer un ajustement
      *
-     * @tags api
-     * @name ApiWorkshopSettingsWorkersWorkerAuthorisedCreate
+     * @tags workshop
+     * @name WorkshopSettingsWorkersWorkerAuthorisedCreate
      * @summary Voir si le tralleur est autorisé à créer un ajustement
      * @request POST:/api/workshop/{slug}/settings/workers/worker-authorised/
      * @secure
      */
-    apiWorkshopSettingsWorkersWorkerAuthorisedCreate: (
+    workshopSettingsWorkersWorkerAuthorisedCreate: (
       slug: string,
       data: WorkerAuthorisationRequest,
       params: RequestParams = {},
@@ -3347,13 +3338,13 @@ export class Api<
     /**
      * @description Statistiques sur les clients
      *
-     * @tags api
-     * @name ApiWorkshopStatsCustomersRetrieve
+     * @tags workshop
+     * @name WorkshopStatsCustomersRetrieve
      * @summary Statistiques sur les clients
      * @request GET:/api/workshop/{slug}/stats/customers/
      * @secure
      */
-    apiWorkshopStatsCustomersRetrieve: (
+    workshopStatsCustomersRetrieve: (
       slug: string,
       params: RequestParams = {},
     ) =>
@@ -3368,14 +3359,14 @@ export class Api<
     /**
      * @description Statistiques sur les commandes
      *
-     * @tags api
-     * @name ApiWorkshopStatsOrdersRetrieve
+     * @tags workshop
+     * @name WorkshopStatsOrdersRetrieve
      * @summary Statistiques sur les commandes
      * @request GET:/api/workshop/{slug}/stats/orders/
      * @secure
      */
-    apiWorkshopStatsOrdersRetrieve: (
-      { slug, ...query }: ApiWorkshopStatsOrdersRetrieveParams,
+    workshopStatsOrdersRetrieve: (
+      { slug, ...query }: WorkshopStatsOrdersRetrieveParams,
       params: RequestParams = {},
     ) =>
       this.request<StatOrdersWorkshop, NotFound404Response>({
@@ -3390,14 +3381,14 @@ export class Api<
     /**
      * @description Retourne la liste paginée des workers d’un atelier.
      *
-     * @tags api
-     * @name ApiWorkshopUsersWorkersList
+     * @tags workshop
+     * @name WorkshopUsersWorkersList
      * @summary Récupérer les workers
      * @request GET:/api/workshop/{slug}/users/workers/
      * @secure
      */
-    apiWorkshopUsersWorkersList: (
-      { slug, ...query }: ApiWorkshopUsersWorkersListParams,
+    workshopUsersWorkersList: (
+      { slug, ...query }: WorkshopUsersWorkersListParams,
       params: RequestParams = {},
     ) =>
       this.request<
@@ -3415,13 +3406,13 @@ export class Api<
     /**
      * @description Crée un nouveau worker dans l’atelier.
      *
-     * @tags api
-     * @name ApiWorkshopUsersWorkersCreate
+     * @tags workshop
+     * @name WorkshopUsersWorkersCreate
      * @summary Créer un worker
      * @request POST:/api/workshop/{slug}/users/workers/
      * @secure
      */
-    apiWorkshopUsersWorkersCreate: (
+    workshopUsersWorkersCreate: (
       slug: string,
       data: WorkerWriteRequest,
       params: RequestParams = {},
@@ -3439,13 +3430,13 @@ export class Api<
     /**
      * @description permet de recuperer un worker
      *
-     * @tags api
-     * @name ApiWorkshopUsersWorkersRetrieve
+     * @tags workshop
+     * @name WorkshopUsersWorkersRetrieve
      * @summary recuperer un worker
      * @request GET:/api/workshop/{slug}/users/workers/{worker_pk}/
      * @secure
      */
-    apiWorkshopUsersWorkersRetrieve: (
+    workshopUsersWorkersRetrieve: (
       slug: string,
       workerPk: string,
       params: RequestParams = {},
@@ -3461,13 +3452,13 @@ export class Api<
     /**
      * @description permet de mettre a jour un worker
      *
-     * @tags api
-     * @name ApiWorkshopUsersWorkersPartialUpdate
+     * @tags workshop
+     * @name WorkshopUsersWorkersPartialUpdate
      * @summary mettre a jour un worker
      * @request PATCH:/api/workshop/{slug}/users/workers/{worker_pk}/
      * @secure
      */
-    apiWorkshopUsersWorkersPartialUpdate: (
+    workshopUsersWorkersPartialUpdate: (
       slug: string,
       workerPk: string,
       data: PatchedWorkerWriteRequest,
@@ -3486,13 +3477,13 @@ export class Api<
     /**
      * @description permet de supprimer un worker
      *
-     * @tags api
-     * @name ApiWorkshopUsersWorkersDestroy
+     * @tags workshop
+     * @name WorkshopUsersWorkersDestroy
      * @summary supprimer un worker
      * @request DELETE:/api/workshop/{slug}/users/workers/{worker_pk}/
      * @secure
      */
-    apiWorkshopUsersWorkersDestroy: (
+    workshopUsersWorkersDestroy: (
       slug: string,
       workerPk: string,
       params: RequestParams = {},
@@ -3507,14 +3498,14 @@ export class Api<
     /**
      * @description Permet de recupere la liste des package disponibles
      *
-     * @tags api
-     * @name ApiWorkshopPackageListList
+     * @tags workshop
+     * @name WorkshopPackageListList
      * @summary Liste des package
      * @request GET:/api/workshop/package-list/
      * @secure
      */
-    apiWorkshopPackageListList: (
-      query: ApiWorkshopPackageListListParams,
+    workshopPackageListList: (
+      query: WorkshopPackageListListParams,
       params: RequestParams = {},
     ) =>
       this.request<PaginatedPackageReadList, any>({
@@ -3529,13 +3520,13 @@ export class Api<
     /**
      * @description Permet de vérifier si un email est déjà utilisé. Possibilité d'exclure un email existant.
      *
-     * @tags api
-     * @name ApiWorkshopValidatorsNamesUniqueCreate
+     * @tags workshop
+     * @name WorkshopValidatorsNamesUniqueCreate
      * @summary Vérifie si un email existe
      * @request POST:/api/workshop/validators-names-unique/
      * @secure
      */
-    apiWorkshopValidatorsNamesUniqueCreate: (
+    workshopValidatorsNamesUniqueCreate: (
       data: VerifyFieldRequest,
       params: RequestParams = {},
     ) =>
