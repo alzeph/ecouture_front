@@ -29,7 +29,7 @@ export const PhoneField = ({
       validators={{
         ...(isUnique ? {
           onBlurAsync: async ({ value }) => {
-            const response = await proxy.api.apiUserVerifyPhoneCreate({ verify: value, ...(ignoreValue && { exclude: ignoreValue }) })
+            const response = await proxy.api.userVerifyPhoneCreate({ verify: value, ...(ignoreValue && { exclude: ignoreValue }) })
             const isExists = responseIsExists(response)
             console.log(isExists)
             return isExists ? { message: "numero est deja utilisé" } : undefined

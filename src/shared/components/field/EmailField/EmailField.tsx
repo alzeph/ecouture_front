@@ -29,7 +29,7 @@ export const EmailField = ({
       validators={{
         ...(isUnique ? {
           onBlurAsync: async ({ value }) => {
-            const response = await proxy.api.apiUserVerifyEmailCreate({ verify: value, ...(ignoreValue && { exclude: ignoreValue }) })
+            const response = await proxy.api.userVerifyEmailCreate({ verify: value, ...(ignoreValue && { exclude: ignoreValue }) })
             const isExists = responseIsExists(response)
             return isExists ? { message: "l'email est deja utilisé" } : undefined
           }
