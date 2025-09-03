@@ -1,0 +1,6 @@
+.fade {
+    opacity: 0;
+    border: 2px solid;
+    display: None;
+    transition: opacity 300ms display 400ms;
+}

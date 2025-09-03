@@ -1,0 +1,5 @@
+export const APP_NAME = "ecouture"
+export const BASE_URL = "http://localhost:8000"
+export const ACCESS_TOKEN_KEY = "bccb1b2d192081a10756d1224955c3092471af2f15ec760832a581fa587fe011"
+export const REFRESH_TOKEN_KEY = "478015630c96c5fc09f1aa7b3f3130b431e9525f81d1589632866952c1539424"
+
