@@ -29,7 +29,7 @@ export const CustomerField = ({
     queryKey: [APP_NAME, 'customer_workshop', workshop],
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopCustomersWorkshopsList({ slug: workshop.slug, page: pageParam })
+        const response = await proxy.api.workshopCustomersWorkshopsList({ slug: workshop.slug, page: pageParam })
         return response.data
       } else {
         return {

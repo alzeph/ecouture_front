@@ -9,7 +9,7 @@ import bgHero from "@assets/img/hero.png"
 import styles from './home-page.module.css';
 import { ROUTES } from "@shared/constants";
 import { LoginForm } from "@features/users/components/form";
-import { WorkerOrderWorkshopForm, WorkshopCreateForm } from "@features/workshop/components/form";
+import { WorkshopCreateForm } from "@features/workshop/components/form";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { APP_NAME } from "@features/core/constants";
 import { getPageParam, responseExtractData, responseTraited } from "@shared/api";
@@ -195,7 +195,7 @@ export const HomePage = ({ }: HomePageProps) => {
                       title="Commencer avec e-couture"
                       mode="filled"
                       onClick={() => {
-                        isAuthenticated ? navigate(ROUTES.DASHBOARD) : openDrawer({ id: WorkerOrderWorkshopForm.id })
+                        isAuthenticated ? navigate(ROUTES.DASHBOARD) : openDrawer({ id: WorkshopCreateForm.id })
                       }}
                     />
                   </Group>

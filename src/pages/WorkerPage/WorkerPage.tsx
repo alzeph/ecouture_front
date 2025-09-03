@@ -28,8 +28,8 @@ export const WorkerPage = ({ }: WorkerPageProps) => {
     {
       accessor: 'last_name',
       title: "Nom et prénoms",
-      cellsStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.transparent[0] } },
-      titleStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.transparent[0] } },
+      cellsStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
+      titleStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
       render: (worker) => (
         <AvatarSewing
           photo={worker.user.photo || ""}
@@ -56,8 +56,8 @@ export const WorkerPage = ({ }: WorkerPageProps) => {
     {
       accessor: 'actions',
       title: 'Actions',
-      cellsStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.transparent[0] } },
-      titleStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.transparent[0] } },
+      cellsStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
+      titleStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
       render: (worker) => (
         <Group>
           {/* <ActionIcon

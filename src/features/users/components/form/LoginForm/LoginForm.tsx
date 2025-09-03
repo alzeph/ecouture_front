@@ -33,7 +33,7 @@ export const LoginForm = ({ }: LoginFormProps) => {
     },
     onSubmit: async ({ value }) => {
       try {
-        login(value);
+        await login(value);
         form.reset()
         closeDrawer(id)
       } catch (error) {

@@ -27,7 +27,7 @@ export const WorkerField = ({
     queryKey: ['workers', workshop],
     queryFn: async ({ pageParam }) => {
       if (workshop) {
-        const response = await proxy.api.apiWorkshopUsersWorkersList({ slug: workshop.slug, page: pageParam })
+        const response = await proxy.api.workshopUsersWorkersList({ slug: workshop.slug, page: pageParam })
         return response.data
       } else {
         return {

@@ -21,7 +21,7 @@ type AuthContextType = {
   refetchUser: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<WorkerRead, Error>>;
   proxy: Api<string>;
   isAuthenticated: boolean | null;
-  login: ({ email, password }: TokenObtainPairRequest) => void;
+  login: ({ email, password }: TokenObtainPairRequest) => Promise<void>;
   logout: () => void;
   loading: boolean,
 }

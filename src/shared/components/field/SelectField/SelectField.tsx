@@ -56,10 +56,12 @@ export const SelectField = <T,>({
   });
 
   // Récupération de la première erreur si elle existe
-  const errorMessage =
+  const errorMessage = useMemo(() =>
     isError && field.state.meta.isTouched && field.state.meta.errors.length > 0
       ? (field.state.meta.errors[0] as unknown as { message: string }).message
-      : undefined;
+      : undefined
+    , [field])
+
 
   const selectCustomer = useCombobox(
   )
@@ -79,27 +81,29 @@ export const SelectField = <T,>({
   }, [optionRender])
 
 
-  const optionSelectCustomer = dataTraited?.map(({ value, data }) => (
-    <Combobox.Option
-      disabled={disabledOption && disabledOption(data)}
-      {...comboboxOptionProps}
-      key={value} value={String(value)}>
-      {handleOptionRender(data)}
-    </Combobox.Option>
-  ))
+  const optionSelectCustomer = useMemo(() =>
+    dataTraited?.map(({ value, data }) => (
+      <Combobox.Option
+        disabled={disabledOption && disabledOption(data)}
+        {...comboboxOptionProps}
+        key={value} value={String(value)}>
+        {handleOptionRender(data)}
+      </Combobox.Option>
+    ))
+    , [dataTraited, handleOptionRender, disabledOption])
 
   const traitedValueSelected = useMemo(() => {
     const _value1 = field.state.value ? dataTraited?.filter(item => String(item.value) === String(field.state.value))[0] : undefined;
     const _value2 = fixeValue ? dataTraited?.filter(item => String(item.value) === String(render(fixeValue).value))[0] : undefined;
     return _value2 ?? _value1
-  }, [data, render, field.state.value])
+  }, [data, render, field.state.value, fixeValue, dataTraited])
 
 
 
   useEffect(() => {
     const _value2 = fixeValue ? dataTraited?.filter(item => String(item.value) === String(render(fixeValue).value))[0] : undefined;
     _value2 && field.handleChange(_value2.value)
-  }, [fixeValue])
+  }, [fixeValue, dataTraited])
 
   return (
     <Combobox
@@ -114,7 +118,7 @@ export const SelectField = <T,>({
       <Combobox.Target>
         <InputBase
           {...inputProps}
-          
+
           disabled={!!fixeValue || query?.isLoading}
           name={name}
           onChange={(e) => field.handleChange(e.currentTarget.value)}

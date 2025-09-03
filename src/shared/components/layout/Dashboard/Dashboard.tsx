@@ -1,27 +1,40 @@
 import styles from './dashboard.module.css';
 
-import { useWindow } from "@features/core/hook";
+import { useAuth, useDrawerManager, useWindow } from "@features/core/hook";
+import { LoginForm } from '@features/users/components/form';
 import { ActionIcon, AppShell, Burger, rgba, useMantineTheme, type CSSProperties } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { NavBar, SideBar } from "@shared/components/common";
 import { IconDoorEnter, IconDoorExit } from "@tabler/icons-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 
 export interface DashboardProps {
-  test?:boolean
+  test?: boolean
 }
 
-export const Dashboard = ({test}: DashboardProps) => {
+export const Dashboard = ({ test }: DashboardProps) => {
   const refNavBar = useRef<HTMLDivElement>(null);
   const theme = useMantineTheme();
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure(true);
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
-  const {moreThan: {windowMobile}} = useWindow()
+  const { moreThan: { windowMobile } } = useWindow()
+  const { openDrawer, closeDrawer, isOpen } = useDrawerManager()
+  const loginDrawerOpened = isOpen(LoginForm.id)
+  const { isAuthenticated } = useAuth()
+
+  useEffect(() => {
+    if (!isAuthenticated && !loginDrawerOpened ) {
+      openDrawer({ id: LoginForm.id })
+    } else {
+      closeDrawer(LoginForm.id)
+    }
+  }, [isAuthenticated, loginDrawerOpened])
+
 
   return (
     <>
-    <AppShell
+      <AppShell
         header={{ height: 70 }}
         navbar={{
           width: 280,
