@@ -4,7 +4,7 @@ import { useDrawerManager } from "@features/core/hook";
 import { Container, Drawer, LoadingOverlay, rgba, useMantineTheme, type ContainerProps, type CSSProperties, type DrawerProps } from "@mantine/core";
 import type React from "react";
 
-interface DrawerStackProps extends Omit<DrawerProps,
+export interface DrawerStackProps extends Omit<DrawerProps,
   'opened' | 'onClose' |
   "m" | "ml" | "mr" | "mt" | "mb" | "pt" | "p" | "pb" | "pl" | "pr"
 > {

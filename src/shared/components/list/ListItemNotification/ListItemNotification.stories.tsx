@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ListItemNotification } from './ListItemNotification';
+import { InternalNotificatinoReadCategoryEnum, InternalNotificatinoReadTypeEnum } from '@shared/api';
 
 const meta: Meta<typeof ListItemNotification> = {
   title: 'shared/components/list/ListItemNotification',
@@ -17,8 +18,8 @@ export const Default: Story = {
       id: 1,
       title: "Créatino d'atelier",
       message: "votre boutique a ete crée avec success",
-      category: "WORKER_CREATION",
-      type: 'success',
+      category: InternalNotificatinoReadCategoryEnum.WORKSHOP_UPDATE,
+      type: InternalNotificatinoReadTypeEnum.Success,
       createdAt: '2023-05-19'
     }
   },

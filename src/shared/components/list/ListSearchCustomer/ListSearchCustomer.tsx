@@ -66,7 +66,7 @@ export const ListSearchCustomer = ({ test }: ListSearchCustomerProps) => {
           {
             slug: workshop.slug,
             page: pageParam,
-            last_name: queryName,
+            name: queryName ? [queryName] : undefined,
           });
         return response.data
       }

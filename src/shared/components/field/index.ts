@@ -34,4 +34,3 @@ export type { CustomerFieldProps } from "./CustomerField/CustomerField";
 export { WorkerField } from "./WorkerField/WorkerField";
 export type { WorkerFieldProps } from "./WorkerField/WorkerField";
 
-export type { WorkerFieldProps } from "./WorkerField/WorkerField";

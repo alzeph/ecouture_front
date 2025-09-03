@@ -30,11 +30,19 @@ export const responseIsExists = (
 };
 
 
-type NestedKeys<T> = {
-  [K in Extract<keyof T, string>]: T[K] extends Record<string, any>
-    ? K | `${K}.${NestedKeys<T[K]>}`
-    : K
-}[Extract<keyof T, string>];
+type NestedKeys<
+  T,
+  Depth extends number = 3,
+  Prev extends any[] = []
+> = Prev['length'] extends Depth
+  ? keyof T & string
+  : {
+      [K in Extract<keyof T, string>]:
+        T[K] extends Record<string, any>
+          ? K | `${K}.${NestedKeys<T[K], Depth, [...Prev, any]>}`
+          : K
+    }[Extract<keyof T, string>];
+
 
 export const traitedWhoConatinsFileExtractData = <TData>({
   data,

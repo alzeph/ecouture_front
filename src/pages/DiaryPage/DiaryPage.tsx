@@ -15,7 +15,7 @@ import qs from "qs";
 import { notifications } from "@mantine/notifications";
 import { useDebouncedCallback } from "@mantine/hooks";
 import { getPeriodFromDateOrRange, type OutputDate } from "@shared/utils";
-import { DatePicker, type DateValue } from "@mantine/dates";
+// import {  type DateValue } from "@mantine/dates";
 
 export interface DiaryPageProps { }
 
@@ -178,7 +178,7 @@ export const DiaryPage = ({ }: DiaryPageProps) => {
   const [selectedWorker, setSelectedWorker] = useState<string[]>([]);
 
   const [dataPeriode, setDataPeriode] = useState<OutputDate | undefined>(undefined)
-  const [valuecalendar, setValueCalendar] = useState<[DateValue, DateValue]>()
+  // const [valuecalendar, setValueCalendar] = useState<[DateValue, DateValue]>()
 
 
   // Fonction de refetch optimisée
@@ -457,7 +457,7 @@ export const DiaryPage = ({ }: DiaryPageProps) => {
             value={valuecalendar}
             onChange={(values) => {
               setValueCalendar(values)
-            }}
+            }}ls
             onBlur={() => {
               if (
                 valuecalendar ?  valuecalendar[1] && valuecalendar[0] &&

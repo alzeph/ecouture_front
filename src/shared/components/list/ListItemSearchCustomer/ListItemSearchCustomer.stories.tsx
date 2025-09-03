@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ListItemSearchCustomer } from './ListItemSearchCustomer';
+import { CustomerWorkshopReadGenreEnum } from '@shared/api';
 
 const meta: Meta<typeof ListItemSearchCustomer> = {
   title: 'shared/components/list/ListItemSearchCustomer',
@@ -17,13 +18,16 @@ export const Default: Story = {
       last_name: "cedric herve",
       first_name: "Youan",
       nickname: "La boule",
-      genre: "MAN",
+      genre: CustomerWorkshopReadGenreEnum.MAN,
       email: "hervecedricyouan@gmail.com",
       phone: "0777537954",
       is_active: true,
       createdAt: "2025-12-6",
       updatedAt: "2025-12-6",
-      photo: null
+      photo: null,
+      total_orders: "5",
+      ongoing_orders: "2",
+      urgent_orders: "3",
     }
   },
 };

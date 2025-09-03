@@ -20,7 +20,6 @@ export const Default: Story = {
           return (
             <div>
               <div>isAuthenticated: {JSON.stringify(context.isAuthenticated)}</div>
-              <div>user: {JSON.stringify(context.user)}</div>
               <div>workshop: {JSON.stringify(context.workshop)}</div>
               <div>worker: {JSON.stringify(context.worker)}</div>
             </div>
