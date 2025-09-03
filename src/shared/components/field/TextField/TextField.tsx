@@ -1,5 +1,6 @@
 import { TextInput, type TextInputProps } from "@mantine/core";
 import { useField } from '@tanstack/react-form';
+import { useMemo } from "react";
 
 export interface TextFieldProps extends Omit<TextInputProps, 'onChange'> {
   form: any;
@@ -20,6 +21,7 @@ export const TextField = ({
   isError = false,
   validators,
   onValueTraited,
+  error,
   ...props
 }:
   TextFieldProps) => {
@@ -31,16 +33,19 @@ export const TextField = ({
   });
 
   // Récupération de la première erreur si elle existe
-  const errorMessage =
-    isError && field.state.meta.isTouched && field.state.meta.errors.length > 0
+  const errorMessage = useMemo(() => {
+    const _error = isError && field.state.meta.isTouched && field.state.meta.errors.length > 0
       ? (field.state.meta.errors[0] as unknown as { message: string }).message
-      : undefined;
+      : undefined
+    return _error || error 
+  },[field.state.meta.isTouched, field.state.meta.errors, error]);
 
   const handleChange = (value: string) => {
     const transformedValue = onValueTraited ? onValueTraited(value) : value;
     field.handleChange(transformedValue);
   }
 
+  
   return (
     <TextInput
       name={name}

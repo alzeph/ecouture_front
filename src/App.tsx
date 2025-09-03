@@ -21,14 +21,14 @@ const queryClient = new QueryClient();
 const AppRoute = ({ routeDashboard }: { routeDashboard: '/' | "/dashboard" }) => {
     return (
         <Routes>
-            {routeDashboard === '/dashboard' && <Route path="/" element={<HomePage/>} />}
-            <Route path={routeDashboard} element={<Dashboard/>}>
-                <Route index element={<DashboardPage/>} />
-                <Route path={ROUTES.CLIENTS.LIST} element={<CustomerPage/>} />
-                <Route path={ROUTES.WORKERS.LIST} element={<WorkerPage/>} />
-                <Route path={ROUTES.AGENDA} element={<DiaryPage/>} />
+            {routeDashboard === '/dashboard' && <Route path="/" element={<HomePage />} />}
+            <Route path={routeDashboard} element={<Dashboard />}>
+                <Route index element={<DashboardPage />} />
+                <Route path={ROUTES.CLIENTS.LIST} element={<CustomerPage />} />
+                <Route path={ROUTES.WORKERS.LIST} element={<WorkerPage />} />
+                <Route path={ROUTES.AGENDA} element={<DiaryPage />} />
                 {/* <Route path={ROUTES.MERCERIE} element={<></>} /> */}
-                <Route path={ROUTES.SETTINGS} element={<WorkshopSettingPage/>} />
+                <Route path={ROUTES.SETTINGS} element={<WorkshopSettingPage />} />
                 {/* <Route path={ROUTES.PROFILE} element={<></>} /> */}
             </Route>
         </Routes>
@@ -49,7 +49,7 @@ export default function App() {
                         <Suspense fallback={<LoadingOverlay visible={loading} zIndex={1000} overlayProps={{ radius: "sm", blur: 4, bg: "secondary.4", opacity: 0.7, }} />}>
                             <WindowProvider>
                                 <DrawerProvider>
-                                    <Notifications position="bottom-right" />
+                                    <Notifications position="top-right" />
                                     <AuthProvider>
                                         {isWeb
                                             ? (<BrowserRouter><AppRoute routeDashboard="/dashboard" /></BrowserRouter>)
@@ -57,7 +57,7 @@ export default function App() {
                                         }
                                         <LoginForm />
                                         <UserForm />
-                                        <CustomerWorkshopForm/>
+                                        <CustomerWorkshopForm />
                                         <AmountOrderWorkshopForm />
                                         <DeliveryOrderWorkshopForm />
                                         <FittingForm />

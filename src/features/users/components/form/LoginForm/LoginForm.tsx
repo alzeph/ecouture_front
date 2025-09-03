@@ -2,13 +2,14 @@
 
 import { DrawerStack } from "@features/core/components";
 import { useAuth, useDrawerManager } from "@features/core/hook";
-import { AspectRatio, Button, Flex, Stack, Title, useMantineTheme } from "@mantine/core";
+import { AspectRatio, Button, Flex, Stack, Text, Title, useMantineTheme } from "@mantine/core";
 import { PasswordField, TextField } from "@shared/components";
 import { useForm } from "@tanstack/react-form";
 import type { AxiosError } from "axios";
 import * as z from 'zod'
 
 import sewingLogin from '@assets/img/sewing_login.jpg';
+import { useState } from "react";
 
 
 export interface LoginFormProps { }
@@ -25,6 +26,7 @@ export const LoginForm = ({ }: LoginFormProps) => {
   const theme = useMantineTheme()
   const { closeDrawer } = useDrawerManager()
   const { isAuthenticated, login, logout } = useAuth()
+  const [isError, setIsError] = useState<boolean>(false)
 
   const form = useForm({
     defaultValues: {
@@ -36,8 +38,10 @@ export const LoginForm = ({ }: LoginFormProps) => {
         await login(value);
         form.reset()
         closeDrawer(id)
+        setIsError(false)
       } catch (error) {
         const e = error as AxiosError
+        setIsError(true)
         if (e && e.status && e.status === 401) {
           return { fields: { password: "Email ou password incorrect", email: "Email ou password incorrect" } }
         }
@@ -59,6 +63,7 @@ export const LoginForm = ({ }: LoginFormProps) => {
 
           {!isAuthenticated ? (
             <>
+              {isError && <Text ta="center" c="error.9">Email ou password incorrect</Text>}
               <TextField form={form} name="email" placeholder="address mail" />
               <PasswordField form={form} name="password" placeholder="Mot de passe" />
 
@@ -70,6 +75,7 @@ export const LoginForm = ({ }: LoginFormProps) => {
                   type="submit"
                   disabled={form.state.isSubmitting}
                   onClick={form.handleSubmit}
+
                 >
                   Se connecter
                 </Button>
