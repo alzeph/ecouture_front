@@ -75,6 +75,7 @@ export const CustomerWorkshopForm = ({ }: CustomerWorkshopFormProps) => {
           message: `Une erreur ces produite lors de l'ajout de votre client : recharger la page et réesayer`,
           color: 'error.9',
         })
+        console.log(error)
       } finally {
         closeDrawer(id)
         form.reset()
