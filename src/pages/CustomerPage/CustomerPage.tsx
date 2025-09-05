@@ -134,7 +134,7 @@ export const CustomerPage = ({ }: CustomerPageProps) => {
       cellsStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
       titleStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
       render: (customer) => (
-        <Group wrap='nowrap'>
+        <Group>
           <ActionIcon
             size={'md'}
             radius="sm"

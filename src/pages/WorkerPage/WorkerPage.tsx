@@ -60,14 +60,6 @@ export const WorkerPage = ({ }: WorkerPageProps) => {
       titleStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
       render: (worker) => (
         <Group>
-          {/* <ActionIcon
-            size={'md'}
-            radius="sm"
-            variant='transparent'
-            gradient={{ from: 'primary.4', to: 'secondary.4', deg: 90 }}
-          >
-            <IconCalendarEvent />
-          </ActionIcon> */}
           <ActionIcon
             size={'md'}
             radius="sm"
