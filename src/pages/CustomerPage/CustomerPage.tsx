@@ -128,7 +128,7 @@ export const CustomerPage = ({ }: CustomerPageProps) => {
     { width: "0%", accessor: 'ongoing_orders', title: 'Commandes en cours' },
     { width: "0%", accessor: 'total_orders', title: 'Commandes totales' },
     {
-      width: "0%",
+      // width: "0%",
       accessor: 'actions',
       title: 'Actions',
       cellsStyle: () => { return { backgroundColor: colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.white[0] } },
