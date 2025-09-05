@@ -14,6 +14,7 @@ import { AmountOrderWorkshopForm, DeliveryOrderWorkshopForm, FittingForm, Measur
 import { CustomerWorkshopForm, LoginForm, UserForm } from "@features/users/components/form";
 import { CustomerPage, DashboardPage, DiaryPage, HomePage, WorkerPage, WorkshopSettingPage } from "./pages";
 import { Dashboard } from "@shared/components";
+import { OrderDetail, OrderList } from "@features/workshop/components/common";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +66,8 @@ export default function App() {
                                         <OrderWorshoForm />
                                         <WorkerOrderWorkshopForm />
                                         <WorkshopCreateForm />
+                                        <OrderList />
+                                        <OrderDetail />
                                     </AuthProvider>
                                 </DrawerProvider>
                             </WindowProvider>
