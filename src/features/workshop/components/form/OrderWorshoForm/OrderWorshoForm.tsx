@@ -127,8 +127,8 @@ export const OrderWorshoForm = ({ }: OrderWorshoFormProps) => {
             : await responseTraited({ queryFn: () => proxy.api.workshopOrdersCreate(workshop.slug, valueTraited, { type: ContentType.Json }) })
           const data = responseExtractData(response)
 
-          await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_clothing_model }, { type: ContentType.Json }) })
-          await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_fabric }, { type: ContentType.Json }) })
+          await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_clothing_model }, { type: ContentType.FormData }) })
+          await responseTraited({ queryFn: () => proxy.api.workshopOrdersPartialUpdate(String(data.id), data.worker.workshop.slug, { photo_of_fabric }, { type: ContentType.FormData }) })
 
           notifications.show({
             title: initialData ? "Modifier" : "ajouter",

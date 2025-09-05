@@ -49,7 +49,7 @@ export const CustomerWorkshopForm = ({ }: CustomerWorkshopFormProps) => {
           const response = initialData ? await responseTraited({
             queryFn: () => proxy.api.workshopCustomersWorkshopsPartialUpdate(workshop.slug, initialData.id, customer as PatchedCustomerWorkshopWriteRequest, { type: ContentType.Json })
           }) : await responseTraited({
-            queryFn: () => proxy.api.workshopCustomersWorkshopsCreate(workshop.description, customer as CustomerWorkshopWriteRequest, { type: ContentType.Json })
+            queryFn: () => proxy.api.workshopCustomersWorkshopsCreate(workshop.slug, customer as CustomerWorkshopWriteRequest, { type: ContentType.Json })
           })
 
           await responseTraited(({
